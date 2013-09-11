@@ -1,0 +1,138 @@
+/* each basic and structured activity has this */
+div.bpel_activity {
+    /* center it within parent */
+    margin-left: auto;
+    margin-right: auto;
+  
+    /* 10px border */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  
+	border: 2px solid rgb(112, 152, 179);
+    box-shadow: 5px 5px 17px #aaa;
+	border-radius: 12px;
+	background: #ffffff;
+  
+	cursor: standard;
+}
+
+
+/* contents of each activity */
+
+div.bpel_name:before {
+  content: "Name: "
+}
+
+/*
+div.bpel_name {
+  margin-top: 5px;
+  
+  margin-left: -10px;
+  padding-left: 20px;
+  
+  margin-right: -10px;
+  padding-right: 20px;
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgb(112, 152, 179);
+}
+*/
+
+/* BPEL distinguishes between basic and structured activities */
+
+div.bpel_structured_activity {
+  overflow:hidden
+}
+
+div.bpel_basic_activity {
+	width: 225px;
+    height: 100px;
+
+	/* IE10 Consumer Preview */
+	background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
+	/* Mozilla Firefox */
+	background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
+	/* Opera */
+	background-image: -o-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
+	/* Webkit (Safari/Chrome 10) */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #EBF2F7));
+	/* Webkit (Chrome 11+) */
+	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
+	/* W3C Markup, IE10 Release Preview */
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #EBF2F7 100%);
+}
+
+
+
+/* special handling for each type of activity */
+
+div.bpel_process {
+   /* skale to width of contents */
+    display: inline-block;
+}
+
+/* main / elseif / else */
+div.bpel_if_child {
+    /* center it within parent */
+    margin-left: 10px;
+    margin-right: 0px;
+  
+    /* 10px border */
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    float: left;
+    display: inline-block;
+}
+
+div.bpel_if {
+  padding: 0px;
+  padding-bottom: 10px;
+}
+
+div.bpel_if:before {
+  content: "<<if>>";
+}
+
+div.bpel_if_main:before {
+  content: "<<first branch>>"
+}
+
+div.bpel_if_elseif:before {
+  content: "<<elseif>>"
+}
+
+div.bpel_if_else:before {
+  content: "<<else>>"
+}
+
+div.bpel_if_condition {
+  
+}
+
+div.bpel_wait:before {
+  content: "<<wait>>"
+}
+
+div.bpel_invoke:before {
+  content: "<<invoke>>"
+}
+
+div.bpel_receive:before {
+  content: "<<receive>>"
+}
+
+div.bpel_while:before {
+  content: "<<while>>"
+}
+
+div.bpel_sequence:before {
+  content: "<<sequence>>"
+}
