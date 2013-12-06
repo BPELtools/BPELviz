@@ -75,12 +75,7 @@ div.bpel_activity, div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div
   box-shadow: 5px 5px 17px #aaa;
   border-radius: 12px;
   background: #ffffff;
-  cursor: standard; }
-
-/* BPEL distinguishes between basic and structured activities */
-div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, div.bpel_compensateScope, div.bpel_exit, div.bpel_extensionActivity, div.bpel_invoke, div.bpel_receive, div.bpel_reply, div.bpel_rethrow, div.bpel_throw, div.bpel_validate, div.bpel_wait {
-  width: 225px;
-  height: 100px;
+  cursor: standard;
   /* IE10 Consumer Preview */
   background-image: -ms-linear-gradient(top, white 0%, #ebf2f7 100%);
   /* Mozilla Firefox */
@@ -93,6 +88,11 @@ div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, d
   background-image: -webkit-linear-gradient(top, white 0%, #ebf2f7 100%);
   /* W3C Markup, IE10 Release Preview */
   background-image: linear-gradient(to bottom, white 0%, #ebf2f7 100%); }
+
+/* BPEL distinguishes between basic and structured activities */
+div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, div.bpel_compensateScope, div.bpel_exit, div.bpel_extensionActivity, div.bpel_invoke, div.bpel_receive, div.bpel_reply, div.bpel_rethrow, div.bpel_throw, div.bpel_validate, div.bpel_wait {
+  width: 225px;
+  height: 100px; }
 
 div.bpel_assign:before {
   content: "<<assign>>"; }
