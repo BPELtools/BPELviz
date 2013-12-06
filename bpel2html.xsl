@@ -102,7 +102,7 @@
 
             <xsl:text>&lt;/pre&gt;</xsl:text>
         </xsl:variable>
-        <div class="bpel_{name()} shrinkable"
+        <div class="bpel_{fn:local-name()} shrinkable"
              rel="popover"
              data-trigger="hover"
              data-content="{$xml-serialization}"
