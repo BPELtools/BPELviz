@@ -21,20 +21,29 @@
         $("div.shrinkable").on("click", function(e) {
             var element = $(e.delegateTarget);
 
-            // only shrink shrinkable children
-            var children = element.children(".shrinkable");
+            var shrunkChildren = element.children(".shrunk");
+            if (shrunkChildren.size() == 0) {
+                // no shrunk children
 
-            if (children.size() == 0) {
-                // the element itself contains no shrinkable children
-                //  shrink the element itself
-                element.slideUp();
-            } else {
-                if (children.is(":visible")) {
-                    children.slideUp();
+                var children = element.children(".shrinkable:visible");
+                if (children.size() == 0) {
+                    // the element itself contains no shrinkable children
+                    //  shrink the element itself
+                    element.slideUp();
+                    element.addClass("shrunk");
                 } else {
-                    children.slideDown();
+                    // shrink them
+                    children.slideUp();
+                    children.addClass("shrunk");
                 }
+            } else {
+                // children are shrunk
+                // unshrink them
+                shrunkChildren.slideDown();
+                shrunkChildren.removeClass("shrunk");
             }
+
+            // no more further event handling
             return false;
         })
     }
