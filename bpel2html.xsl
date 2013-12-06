@@ -16,27 +16,32 @@
     <xsl:template match="/bpel:process">
         <html>
             <head>
-                <script src="http://code.jquery.com/jquery.min.js"></script>
-                <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+                <title>BPEL Renderer</title>
+                <meta charset="utf-8"/>
+
+                <script src="http://requirejs.org/docs/release/2.1.9/minified/require.js"></script>
+                <script>
+                    require.config({
+                    paths: {
+                        "jquery": "http://codeorigin.jquery.com/jquery-2.0.3.min",
+                        "bootstrap3": "http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min"
+                    },
+                    shim: {
+                        "bootstrap3": ["jquery"]
+                    }});
+                </script>
+
                 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"
                       type="text/css"/>
                 <link href="bpel-renderer-html5.css" rel="stylesheet" type="text/css"/>
 
                 <style>
                     .popover {
-                    max-width: 800px;
-                    width: auto;
+                        max-width: 800px;
+                        width: auto;
                     }
                 </style>
 
-                <script>
-                    $(function() {
-                    $("div[rel='popover']").popover();
-                    });
-                </script>
-
-                <meta charset="utf-8"/>
-                <title>BPEL Renderer</title>
             </head>
             <body>
 
@@ -44,6 +49,14 @@
                     <xsl:apply-templates select="@* | node()"/>
                 </div>
 
+                <script>
+                    require(["bpel-renderer-html5"], function(renderer) {
+                        renderer.initialize();
+                    });
+                    require(["jquery", "bootstrap3"], function($) {
+                        $("div[rel='popover']").popover();
+                    });
+                </script>
             </body>
         </html>
     </xsl:template>
