@@ -1,94 +1,3 @@
-/* each basic and structured activity has this */
-div.bpel_activity, div.bpel_structured_activity, div.bpel_process, div.bpel_if, div.bpel_eventHandlers, div.bpel_faultHandlers, div.bpel_forEach, div.bpel_catch, div.bpel_catchAll, div.bpel_flow, div.bpel_pick, div.bpel_onAlarm, div.bpel_onEvent, div.bpel_onMessage, div.bpel_repeatUntil, div.bpel_scope, div.bpel_sequence, div.bpel_while, div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, div.bpel_compensateScope, div.bpel_exit, div.bpel_extensionActivity, div.bpel_invoke, div.bpel_receive, div.bpel_reply, div.bpel_rethrow, div.bpel_throw, div.bpel_validate, div.bpel_wait, div.bpel_if_child, div.bpel_if_then, div.bpel_if_elseif, div.bpel_if_else {
-  /* center it within parent */
-  margin-left: auto;
-  margin-right: auto;
-  /* 10px border */
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border: 2px solid #7098b3;
-  box-shadow: 5px 5px 17px #aaa;
-  border-radius: 12px;
-  background: #ffffff;
-  cursor: standard; }
-
-/* contents of each activity */
-div.bpel_name:before {
-  content: "Name: "; }
-
-/*
-div.bpel_name {
-  margin-top: 5px;
-  
-  margin-left: -10px;
-  padding-left: 20px;
-  
-  margin-right: -10px;
-  padding-right: 20px;
-  
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  padding-bottom: 5px;
-  border-bottom: 2px solid rgb(112, 152, 179);
-}
-*/
-/* BPEL distinguishes between basic and structured activities */
-div.bpel_structured_activity, div.bpel_process, div.bpel_if, div.bpel_eventHandlers, div.bpel_faultHandlers, div.bpel_forEach, div.bpel_catch, div.bpel_catchAll, div.bpel_flow, div.bpel_pick, div.bpel_onAlarm, div.bpel_onEvent, div.bpel_onMessage, div.bpel_repeatUntil, div.bpel_scope, div.bpel_sequence, div.bpel_while {
-  overflow: hidden; }
-
-div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, div.bpel_compensateScope, div.bpel_exit, div.bpel_extensionActivity, div.bpel_invoke, div.bpel_receive, div.bpel_reply, div.bpel_rethrow, div.bpel_throw, div.bpel_validate, div.bpel_wait {
-  width: 225px;
-  height: 100px;
-  /* IE10 Consumer Preview */
-  background-image: -ms-linear-gradient(top, white 0%, #ebf2f7 100%);
-  /* Mozilla Firefox */
-  background-image: -moz-linear-gradient(top, white 0%, #ebf2f7 100%);
-  /* Opera */
-  background-image: -o-linear-gradient(top, white 0%, #ebf2f7 100%);
-  /* Webkit (Safari/Chrome 10) */
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(1, #ebf2f7));
-  /* Webkit (Chrome 11+) */
-  background-image: -webkit-linear-gradient(top, white 0%, #ebf2f7 100%);
-  /* W3C Markup, IE10 Release Preview */
-  background-image: linear-gradient(to bottom, white 0%, #ebf2f7 100%); }
-
-/* special handling for each type of activity */
-div.bpel_process {
-  /* scale to width of contents */
-  display: inline-block; }
-
-/* then / elseif / else */
-div.bpel_if_child, div.bpel_if_then, div.bpel_if_elseif, div.bpel_if_else {
-  /* center it within parent */
-  margin-left: 10px;
-  margin-right: 0px;
-  /* 10px border */
-  margin-top: 10px;
-  margin-bottom: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
-  float: left;
-  display: inline-block; }
-
-div.bpel_if {
-  padding: 0px;
-  padding-bottom: 10px; }
-
-div.bpel_if:before {
-  content: "<<if>>"; }
-
-div.bpel_if_then:before {
-  content: "<<then>>"; }
-
-div.bpel_if_elseif:before {
-  content: "<<elseif>>"; }
-
-div.bpel_if_else:before {
-  content: "<<else>>"; }
-
 div.bpel_correlationSets {
   display: none; }
 
@@ -99,6 +8,9 @@ div.bpel_documentation {
   display: none; }
 
 div.bpel_extensions {
+  display: none; }
+
+div.bpel_condition {
   display: none; }
 
 div.bpel_fromParts {
@@ -149,6 +61,39 @@ div.bpel_until {
 div.bpel_repeatEvery {
   display: none; }
 
+/* each basic and structured activity has this */
+div.bpel_activity, div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, div.bpel_compensateScope, div.bpel_exit, div.bpel_extensionActivity, div.bpel_invoke, div.bpel_receive, div.bpel_reply, div.bpel_rethrow, div.bpel_throw, div.bpel_validate, div.bpel_wait, div.bpel_structured_activity, div.bpel_eventHandlers, div.bpel_if, div.bpel_faultHandlers, div.bpel_forEach, div.bpel_catch, div.bpel_catchAll, div.bpel_flow, div.bpel_pick, div.bpel_onAlarm, div.bpel_onEvent, div.bpel_onMessage, div.bpel_process, div.bpel_repeatUntil, div.bpel_scope, div.bpel_sequence, div.bpel_while, div.bpel_if_child, div.bpel_if_then, div.bpel_if_elseif, div.bpel_if_else {
+  /* center it within parent */
+  margin-left: auto;
+  margin-right: auto;
+  /* 10px border */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 2px solid #7098b3;
+  box-shadow: 5px 5px 17px #aaa;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: standard; }
+
+/* BPEL distinguishes between basic and structured activities */
+div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, div.bpel_compensateScope, div.bpel_exit, div.bpel_extensionActivity, div.bpel_invoke, div.bpel_receive, div.bpel_reply, div.bpel_rethrow, div.bpel_throw, div.bpel_validate, div.bpel_wait {
+  width: 225px;
+  height: 100px;
+  /* IE10 Consumer Preview */
+  background-image: -ms-linear-gradient(top, white 0%, #ebf2f7 100%);
+  /* Mozilla Firefox */
+  background-image: -moz-linear-gradient(top, white 0%, #ebf2f7 100%);
+  /* Opera */
+  background-image: -o-linear-gradient(top, white 0%, #ebf2f7 100%);
+  /* Webkit (Safari/Chrome 10) */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, white), color-stop(1, #ebf2f7));
+  /* Webkit (Chrome 11+) */
+  background-image: -webkit-linear-gradient(top, white 0%, #ebf2f7 100%);
+  /* W3C Markup, IE10 Release Preview */
+  background-image: linear-gradient(to bottom, white 0%, #ebf2f7 100%); }
+
 div.bpel_assign:before {
   content: "<<assign>>"; }
 
@@ -191,8 +136,14 @@ div.bpel_validate:before {
 div.bpel_wait:before {
   content: "<<wait>>"; }
 
+div.bpel_structured_activity, div.bpel_eventHandlers, div.bpel_if, div.bpel_faultHandlers, div.bpel_forEach, div.bpel_catch, div.bpel_catchAll, div.bpel_flow, div.bpel_pick, div.bpel_onAlarm, div.bpel_onEvent, div.bpel_onMessage, div.bpel_process, div.bpel_repeatUntil, div.bpel_scope, div.bpel_sequence, div.bpel_while {
+  overflow: hidden; }
+
 div.bpel_eventHandlers:before {
   content: "<<eventHandlers>>"; }
+
+div.bpel_if:before {
+  content: "<<if>>"; }
 
 div.bpel_faultHandlers:before {
   content: "<<faultHandlers>>"; }
@@ -221,6 +172,9 @@ div.bpel_onEvent:before {
 div.bpel_onMessage:before {
   content: "<<onMessage>>"; }
 
+div.bpel_process:before {
+  content: "<<process>>"; }
+
 div.bpel_repeatUntil:before {
   content: "<<repeatUntil>>"; }
 
@@ -232,3 +186,55 @@ div.bpel_sequence:before {
 
 div.bpel_while:before {
   content: "<<while>>"; }
+
+/* contents of each activity */
+div.bpel_name:before {
+  content: "Name: "; }
+
+/*
+div.bpel_name {
+  margin-top: 5px;
+  
+  margin-left: -10px;
+  padding-left: 20px;
+  
+  margin-right: -10px;
+  padding-right: 20px;
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  padding-bottom: 5px;
+  border-bottom: 2px solid rgb(112, 152, 179);
+}
+*/
+/* special handling for each type of activity */
+div.bpel_process {
+  /* scale to width of contents */
+  display: inline-block; }
+
+div.bpel_if {
+  padding: 0px;
+  padding-bottom: 10px; }
+
+/* then / elseif / else */
+div.bpel_if_child, div.bpel_if_then, div.bpel_if_elseif, div.bpel_if_else {
+  /* center it within parent */
+  margin-left: 10px;
+  margin-right: 0px;
+  /* 10px border */
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  float: left;
+  display: inline-block; }
+
+div.bpel_if_then:before {
+  content: "<<then>>"; }
+
+div.bpel_if_elseif:before {
+  content: "<<elseif>>"; }
+
+div.bpel_if_else:before {
+  content: "<<else>>"; }
