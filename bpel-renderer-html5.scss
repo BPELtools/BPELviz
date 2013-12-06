@@ -130,7 +130,8 @@ div.bpel_if {
 
 /* then / elseif / else */
 div.bpel_if_child {
-    @extend div.bpel_activity;
+  // quick hack: all bpel_if_children also carry bpel_activity
+  @extend div.bpel_activity;
 
     /* center it within parent */
     margin-left: 10px;
@@ -155,4 +156,3 @@ div.bpel_if_child {
     content: "<<#{$ifChild}>>"
   }
 }
-
