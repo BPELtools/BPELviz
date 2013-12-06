@@ -12,47 +12,47 @@
   all bpel_if_children also carry bpel_activity
 -->
 
-  <div class="bpel_process bpel_structured_activity bpel_activity">
-    <div class="bpel_sequence bpel_structured_activity bpel_activity">
-      <div class="bpel_receive bpel_basic_activity bpel_activity">
+  <div class="bpel_process">
+    <div class="bpel_sequence">
+      <div class="bpel_receive">
         <div class="bpel_name">name1</div>
         <div class="bpel_partnerLink" style="display:none">pl</div>
       </div>
-      <div class="bpel_assign bpel_basic_activity bpel_activity">
+      <div class="bpel_assign">
         <div class="bpel_name">name2</div>
       </div>
-      <div class="bpel_while bpel_structured_activity bpel_activity">
+      <div class="bpel_while">
         <div class="bpel_name">name3</div>
-        <div class="bpel_basic_activity bpel_wait bpel_activity">
+        <div class="bpel_wait">
           <div class="bpel_name">name4</div>
         </div>
       </div>
-      <div class="bpel_scope bpel_structured_activity bpel_activity">
+      <div class="bpel_scope">
         <!-- TODO: handler -->
-        <div class="bpel_if bpel_structured_activity bpel_activity">
-          <div class="bpel_activity bpel_if_child bpel_if_main"> <!-- first child also has to be nested in a div -->
+        <div class="bpel_if">
+          <div class="bpel_if_main"> <!-- first child also has to be nested in a div -->
             <div class="bpel_condition">condition</div>
-            <div class="bpel_basic_activity bpel_wait bpel_activity">
+            <div class="bpel_wait">
               <div class="bpel_name">b1</div>
             </div>
           </div>
-          <div class="bpel_activity bpel_if_child bpel_if_elseif">
+          <div class="bpel_if_elseif">
             <div class="bpel_condition">condition</div>
-            <div class="bpel_basic_activity bpel_wait bpel_activity">
+            <div class="bpel_wait">
               <div class="bpel_name">b2</div>
             </div>
           </div>
-          <div class="bpel_activity bpel_if_child bpel_if_else">
-            <div class="bpel_basic_activity bpel_wait bpel_activity">
+          <div class="bpel_if_else">
+            <div class="bpel_wait">
               <div class="bpel_name">b3</div>
             </div>
           </div>
         </div>
       </div>
       <!-- TODO: pick -->
-      <div class="bpel_invoke bpel_basic_activity bpel_activity">
+      <div class="bpel_invoke">
         <div class="bpel_name">name</div>
-        <div class="bpel_partnerLink" style="display:none">pl</div>
+        <div class="bpel_partnerLink">pl</div>
       </div>
     </div>
   </div>
