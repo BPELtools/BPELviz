@@ -191,23 +191,23 @@ div.bpel_while:before {
 div.bpel_name:before {
   content: "Name: "; }
 
-/*
 div.bpel_name {
-  margin-top: 5px;
-  
-  margin-left: -10px;
-  padding-left: 20px;
-  
-  margin-right: -10px;
-  padding-right: 20px;
-  
   text-overflow: ellipsis;
-  overflow: hidden;
+  display: inline-block;
+  /* line below name, currently not used
+      // this line does not work together with the above
+      overflow: hidden;
+  
+      margin-left: -10px;
+      padding-left: 20px;
+  
+      margin-right: -10px;
+      padding-right: 20px;
+  
+      padding-bottom: 5px;
+      border-bottom: 2px solid rgb(112, 152, 179);
+  */ }
 
-  padding-bottom: 5px;
-  border-bottom: 2px solid rgb(112, 152, 179);
-}
-*/
 /* special handling for each type of activity */
 div.bpel_process {
   /* scale to width of contents */
