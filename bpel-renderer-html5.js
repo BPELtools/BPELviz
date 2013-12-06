@@ -18,18 +18,24 @@
     function initialize() {
         // all elements with "shrinkable" may be shrinked
         // alternative implementation: check for bpel_activity, but this class does not exist any more
-        $("div").on("click", function(e) {
-            var element = $(e.target);
-            while ((element != undefined) && (!element.hasClass("shrinkable"))) {
-                element = element.parent();
-            }
+        $("div.shrinkable").on("click", function(e) {
+            var element = $(e.delegateTarget);
+
             // only shrink shrinkable children
             var children = element.children(".shrinkable");
-            if (children.is(":visible")) {
-                children.slideUp();
+
+            if (children.size() == 0) {
+                // the element itself contains no shrinkable children
+                //  shrink the element itself
+                element.slideUp();
             } else {
-                children.slideDown();
+                if (children.is(":visible")) {
+                    children.slideUp();
+                } else {
+                    children.slideDown();
+                }
             }
+            return false;
         })
     }
 

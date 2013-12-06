@@ -17,45 +17,45 @@
     <link href="bpel-renderer-html5.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div class="bpel_process">
-    <div class="bpel_sequence">
-      <div class="bpel_receive">
+  <div class="bpel_process shrinkable">
+    <div class="bpel_sequence shrinkable shrinkable">
+      <div class="bpel_receive shrinkable">
         <div class="bpel_name">name1</div>
         <div class="bpel_partnerLink">pl</div>
       </div>
-      <div class="bpel_assign">
+      <div class="bpel_assign shrinkable">
         <div class="bpel_name">name2</div>
       </div>
-      <div class="bpel_while">
+      <div class="bpel_while shrinkable">
         <div class="bpel_name">name3</div>
-        <div class="bpel_wait">
+        <div class="bpel_wait shrinkable">
           <div class="bpel_name">name4</div>
         </div>
       </div>
-      <div class="bpel_scope">
+      <div class="bpel_scope shrinkable">
         <!-- TODO: handler -->
-        <div class="bpel_if">
-          <div class="bpel_if_main"> <!-- first child also has to be nested in a div -->
-            <div class="bpel_condition">condition</div>
-            <div class="bpel_wait">
+        <div class="bpel_if shrinkable">
+          <div class="bpel_if_then shrinkable"> <!-- first child also has to be nested in a div -->
+            <div class="bpel_condition shrinkable">condition</div>
+            <div class="bpel_wait shrinkable">
               <div class="bpel_name">b1</div>
             </div>
           </div>
-          <div class="bpel_if_elseif">
-            <div class="bpel_condition">condition</div>
-            <div class="bpel_wait">
+          <div class="bpel_if_elseif shrinkable">
+            <div class="bpel_condition shrinkable">condition</div>
+            <div class="bpel_wait shrinkable">
               <div class="bpel_name">b2</div>
             </div>
           </div>
-          <div class="bpel_if_else">
-            <div class="bpel_wait">
+          <div class="bpel_if_else shrinkable">
+            <div class="bpel_wait shrinkable">
               <div class="bpel_name">b3</div>
             </div>
           </div>
         </div>
       </div>
       <!-- TODO: pick -->
-      <div class="bpel_invoke">
+      <div class="bpel_invoke shrinkable">
         <div class="bpel_name">name</div>
         <div class="bpel_partnerLink">pl</div>
       </div>
