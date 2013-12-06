@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://codeorigin.jquery.com/jquery-2.0.3.min.js"></script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="bpel-renderer-html5.css" rel="stylesheet" type="text/css" />
-<meta charset=utf-8 />
-<title>BPEL Rendering</title>
+    <title>BPEL Rendering</title>
+    <meta charset=utf-8 />
+
+    <script src="http://requirejs.org/docs/release/2.1.9/minified/require.js"></script>
+    <script>
+        require.config({
+            paths: {
+                "jquery": "http://codeorigin.jquery.com/jquery-2.0.3.min"
+            }
+        });
+    </script>
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="bpel-renderer-html5.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="bpel_process">
@@ -52,5 +61,11 @@
       </div>
     </div>
   </div>
+
+    <script>
+        require(["bpel-renderer-html5"], function(renderer) {
+            renderer.initialize();
+        });
+    </script>
 </body>
 </html>
