@@ -53,9 +53,6 @@
                     require(["bpel-renderer-html5"], function(renderer) {
                         renderer.initialize();
                     });
-                    require(["jquery", "bootstrap3"], function($) {
-                        $("div[rel='popover']").popover();
-                    });
                 </script>
             </body>
         </html>
@@ -104,8 +101,8 @@
         </xsl:variable>
         <div class="bpel_{fn:local-name()} shrinkable"
              rel="popover"
-             data-trigger="hover"
-             data-content="{$xml-serialization}"
+             data-trigger="manual"
+             data-title="{$xml-serialization}"
              data-toggle="popover"
              data-html="true" data-placement="right">
             <xsl:apply-templates select="@* | node()"/>

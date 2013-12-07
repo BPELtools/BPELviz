@@ -2,12 +2,17 @@
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
         // Register as named AMD module. Anonymous registering causes "Mismatched anonymous define() module" in requirejs 2.9.1 when script is loaded explicitly and then loaded with requirejs
-        define(['jquery'], factory);
+        define(['jquery', 'bootstrap3'], factory);
     } else {
         // traditional browser loading: build restdoc-renderer object "renderer" without dependencies and inject it into window object
         window.renderer = factory(window.jQuery);
     }
 }(function($) {
+    // divs are nested
+    // thus, a tooltip is still being displayed when a child is hovered
+    // we hide the old tooltip when a new element is entered
+    var currentToolTip = false;
+
     /**
      * Initalizes the DOM elements on the page
      *
@@ -45,7 +50,21 @@
 
             // no more further event handling
             return false;
-        })
+        });
+
+        $("div[rel='popover']").on("mouseover", function(e) {
+            var target = $(e.target);
+            if (!currentToolTip || (currentToolTip[0] != target[0])) {
+                // new element hovered
+                if (currentToolTip) {
+                    // if tooltip is shown the first time, there is no old tooltip, therefore the check for currentToolTip
+                    currentToolTip.tooltip('hide');
+                }
+                currentToolTip = target.tooltip('show');
+            }
+        }).on("mouseleave", function(e) {
+            $(e.target).tooltip('hide');
+        });
     }
 
     var module = {
