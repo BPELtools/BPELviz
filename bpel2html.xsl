@@ -1,39 +1,51 @@
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="2.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:fn="http://www.w3.org/2005/xpath-functions"
+                xmlns:xdt="http://www.w3.org/2005/xpath-datatypes"
                 xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable">
 
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
+    <!-- create doctype html5 element -->
     <xsl:template match="/">
         <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>
-        <xsl:apply-templates select="@* | node()"/>
+        <xsl:apply-templates select="node()"/>
     </xsl:template>
-
 
     <xsl:template match="/bpel:process">
         <html>
             <head>
                 <script src="http://code.jquery.com/jquery.min.js"></script>
+                <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
                 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"
                       type="text/css"/>
                 <link href="bpel-renderer-html5.css" rel="stylesheet" type="text/css"/>
+
+                <style>
+                    .popover {
+                    max-width: 800px;
+                    width: auto;
+                    }
+                </style>
+
+                <script>
+                    $(function() {
+                    $("div[rel='popover']").popover();
+                    });
+                </script>
+
                 <meta charset="utf-8"/>
                 <title>BPEL Renderer</title>
             </head>
             <body>
 
-                <div class="bpel_process bpel_structured_activity bpel_activity">
+                <div class="bpel_process">
                     <xsl:apply-templates select="@* | node()"/>
                 </div>
 
             </body>
         </html>
-    </xsl:template>
-
-    <xsl:template match="bpel:sequence">
-        <div class="bpel_sequence bpel_structured_activity bpel_activity">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
     </xsl:template>
 
     <xsl:template match="bpel:condition">
@@ -42,23 +54,11 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="bpel:scope">
-        <div class="bpel_scope bpel_structured_activity bpel_activity">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
-    </xsl:template>
-
-    <xsl:template match="bpel:else">
-        <div class="bpel_activity bpel_if_child bpel_if_else">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
-    </xsl:template>
-
     <xsl:template match="bpel:if">
-        <div class="bpel_if bpel_structured_activity bpel_activity">
+        <div class="bpel_if">
             <xsl:apply-templates select="@*"/>
 
-            <div class="bpel_activity bpel_if_child bpel_if_main">
+            <div class="bpel_">
                 <xsl:apply-templates select="bpel:condition"/>
                 <xsl:apply-templates select="child[not(bpel:condition or bpel:else or bpel:elseif)]"/>
             </div>
@@ -68,32 +68,33 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="bpel:elseif">
-        <div class="bpel_activity bpel_if_child bpel_if_elseif">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
-    </xsl:template>
+    <xsl:template match="bpel:*">
+        <xsl:variable name="xml-serialization-full"><xsl:apply-templates mode='serialize' select='.'/></xsl:variable>
+        <xsl:variable name="line-break" select="'&#x0a;'"/>
+        <xsl:variable name="lines" select="tokenize($xml-serialization-full, $line-break)"/>
+        <xsl:variable name="xml-serialization">
+            <xsl:variable name="line-numbers" as="xs:integer" select="count($lines)"/>
 
-    <xsl:template match="bpel:while">
-        <div class="bpel_while bpel_structured_activity bpel_activity">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
-    </xsl:template>
+            <xsl:text>&lt;pre&gt;</xsl:text>
+            <xsl:choose>
+                <xsl:when test="$line-numbers > 11">
+                    <xsl:value-of select="string-join(subsequence($lines, 0, 5), $line-break)"/>
+                    <xsl:value-of select="$line-break"/>
+                    ... <xsl:value-of select="$line-numbers - 10"/> lines are hidden ...
+                    <xsl:value-of select="$line-break"/>
+                    <xsl:value-of select="string-join(subsequence($lines, ($line-numbers - 4)), $line-break)"/>
+                </xsl:when>
+                <xsl:otherwise><xsl:value-of select="$xml-serialization-full"/></xsl:otherwise>
+            </xsl:choose>
 
-    <xsl:template match="bpel:wait">
-        <div class="bpel_basic_activity bpel_wait bpel_activity">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
-    </xsl:template>
-
-    <xsl:template match="bpel:receive">
-        <div class="bpel_receive bpel_basic_activity bpel_activity">
-            <xsl:apply-templates select="@* | node()"/>
-        </div>
-    </xsl:template>
-
-    <xsl:template match="bpel:invoke">
-        <div class="bpel_invoke bpel_basic_activity bpel_activity">
+            <xsl:text>&lt;/pre&gt;</xsl:text>
+        </xsl:variable>
+        <div class="bpel_{name()} shrinkable"
+             rel="popover"
+             data-trigger="hover"
+             data-content="{$xml-serialization}"
+             data-toggle="popover"
+             data-html="true" data-placement="right">
             <xsl:apply-templates select="@* | node()"/>
         </div>
     </xsl:template>
@@ -106,5 +107,34 @@
 
     <!-- Override default template for copying text -->
     <xsl:template match="text()|@*"/>
+
+    <!-- serialize xml node to string -->
+    <xsl:template match="*" mode="serialize">
+        <xsl:text>&amp;lt;</xsl:text>
+        <xsl:value-of select="name()"/>
+        <xsl:apply-templates select="@*" mode="serialize" />
+        <xsl:choose>
+            <xsl:when test="node()">
+                <xsl:text>&amp;gt;</xsl:text>
+                <xsl:apply-templates mode="serialize" />
+                <xsl:text>&amp;lt;/</xsl:text>
+                <xsl:value-of select="name()"/>
+                <xsl:text>&amp;gt;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text> /&amp;gt;</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <xsl:template match="@*" mode="serialize">
+        <xsl:text> </xsl:text>
+        <xsl:value-of select="name()"/>
+        <xsl:text>="</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"</xsl:text>
+    </xsl:template>
+    <xsl:template match="text()" mode="serialize">
+        <xsl:value-of select="."/>
+    </xsl:template>
 
 </xsl:stylesheet>
