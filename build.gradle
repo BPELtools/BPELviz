@@ -1,0 +1,32 @@
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "eclipse"
+apply plugin: "application"
+
+mainClassName = "vip.Main"
+
+repositories {
+    mavenCentral()
+}
+
+task compileSass << {
+
+}
+
+
+dependencies {
+    compile 'net.sf.saxon:Saxon-HE:9.5.1-3'
+    compile 'commons-cli:commons-cli:1.2'
+    testCompile 'junit:junit:4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.9'
+}
+
+run {
+    if (project.hasProperty('args')) {
+        args project.args.split('\\s+')
+    }
+}
+

@@ -16,7 +16,7 @@
     <xsl:template match="/bpel:process">
         <html>
             <head>
-                <title>BPEL Renderer</title>
+                <title>BPELviz</title>
                 <meta charset="utf-8"/>
 
                 <script src="http://requirejs.org/docs/release/2.1.9/minified/require.js"></script>
@@ -33,7 +33,7 @@
 
                 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"
                       type="text/css"/>
-                <link href="bpel-renderer-html5.css" rel="stylesheet" type="text/css"/>
+                <link href="BPELviz.css" rel="stylesheet" type="text/css"/>
 
                 <style>
                     .popover {
@@ -50,7 +50,7 @@
                 </div>
 
                 <script>
-                    require(["bpel-renderer-html5"], function(renderer) {
+                    require(["BPELviz"], function(renderer) {
                         renderer.initialize();
                     });
                 </script>
