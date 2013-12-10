@@ -5,7 +5,6 @@ import org.apache.commons.cli.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 /**
  * The parameters for the cli.
