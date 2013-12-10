@@ -64,7 +64,7 @@ div.bpel_basic_activity {
   }
 
   div.bpel_#{$basicActivity}:before {
-    content: "<<#{$basicActivity}>>"
+    content: "\00AB #{$basicActivity}\00BB"
   }
 }
 
@@ -83,7 +83,7 @@ div.bpel_structured_activity {
   }
 
   div.bpel_#{$structuredActivity}:before {
-    content: "<<#{$structuredActivity}>>"
+    content: "\00AB #{$structuredActivity}\00BB"
   }
 }
 
@@ -153,6 +153,6 @@ div.bpel_if_child {
   }
 
   div.bpel_if_#{$ifChild}:before {
-    content: "<<#{$ifChild}>>"
+    content: "\00AB #{$ifChild}\00BB"
   }
 }

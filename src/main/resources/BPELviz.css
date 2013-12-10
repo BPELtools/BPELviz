@@ -95,97 +95,97 @@ div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div.bpel_compensate, d
   height: 100px; }
 
 div.bpel_assign:before {
-  content: "<<assign>>"; }
+  content: "\00AB assign\00BB"; }
 
 div.bpel_empty:before {
-  content: "<<empty>>"; }
+  content: "\00AB empty\00BB"; }
 
 div.bpel_compensate:before {
-  content: "<<compensate>>"; }
+  content: "\00AB compensate\00BB"; }
 
 div.bpel_compensateScope:before {
-  content: "<<compensateScope>>"; }
+  content: "\00AB compensateScope\00BB"; }
 
 div.bpel_empty:before {
-  content: "<<empty>>"; }
+  content: "\00AB empty\00BB"; }
 
 div.bpel_exit:before {
-  content: "<<exit>>"; }
+  content: "\00AB exit\00BB"; }
 
 div.bpel_extensionActivity:before {
-  content: "<<extensionActivity>>"; }
+  content: "\00AB extensionActivity\00BB"; }
 
 div.bpel_invoke:before {
-  content: "<<invoke>>"; }
+  content: "\00AB invoke\00BB"; }
 
 div.bpel_receive:before {
-  content: "<<receive>>"; }
+  content: "\00AB receive\00BB"; }
 
 div.bpel_reply:before {
-  content: "<<reply>>"; }
+  content: "\00AB reply\00BB"; }
 
 div.bpel_rethrow:before {
-  content: "<<rethrow>>"; }
+  content: "\00AB rethrow\00BB"; }
 
 div.bpel_throw:before {
-  content: "<<throw>>"; }
+  content: "\00AB throw\00BB"; }
 
 div.bpel_validate:before {
-  content: "<<validate>>"; }
+  content: "\00AB validate\00BB"; }
 
 div.bpel_wait:before {
-  content: "<<wait>>"; }
+  content: "\00AB wait\00BB"; }
 
 div.bpel_structured_activity, div.bpel_eventHandlers, div.bpel_if, div.bpel_faultHandlers, div.bpel_forEach, div.bpel_catch, div.bpel_catchAll, div.bpel_flow, div.bpel_pick, div.bpel_onAlarm, div.bpel_onEvent, div.bpel_onMessage, div.bpel_process, div.bpel_repeatUntil, div.bpel_scope, div.bpel_sequence, div.bpel_while {
   overflow: hidden; }
 
 div.bpel_eventHandlers:before {
-  content: "<<eventHandlers>>"; }
+  content: "\00AB eventHandlers\00BB"; }
 
 div.bpel_if:before {
-  content: "<<if>>"; }
+  content: "\00AB if\00BB"; }
 
 div.bpel_faultHandlers:before {
-  content: "<<faultHandlers>>"; }
+  content: "\00AB faultHandlers\00BB"; }
 
 div.bpel_forEach:before {
-  content: "<<forEach>>"; }
+  content: "\00AB forEach\00BB"; }
 
 div.bpel_catch:before {
-  content: "<<catch>>"; }
+  content: "\00AB catch\00BB"; }
 
 div.bpel_catchAll:before {
-  content: "<<catchAll>>"; }
+  content: "\00AB catchAll\00BB"; }
 
 div.bpel_flow:before {
-  content: "<<flow>>"; }
+  content: "\00AB flow\00BB"; }
 
 div.bpel_pick:before {
-  content: "<<pick>>"; }
+  content: "\00AB pick\00BB"; }
 
 div.bpel_onAlarm:before {
-  content: "<<onAlarm>>"; }
+  content: "\00AB onAlarm\00BB"; }
 
 div.bpel_onEvent:before {
-  content: "<<onEvent>>"; }
+  content: "\00AB onEvent\00BB"; }
 
 div.bpel_onMessage:before {
-  content: "<<onMessage>>"; }
+  content: "\00AB onMessage\00BB"; }
 
 div.bpel_process:before {
-  content: "<<process>>"; }
+  content: "\00AB process\00BB"; }
 
 div.bpel_repeatUntil:before {
-  content: "<<repeatUntil>>"; }
+  content: "\00AB repeatUntil\00BB"; }
 
 div.bpel_scope:before {
-  content: "<<scope>>"; }
+  content: "\00AB scope\00BB"; }
 
 div.bpel_sequence:before {
-  content: "<<sequence>>"; }
+  content: "\00AB sequence\00BB"; }
 
 div.bpel_while:before {
-  content: "<<while>>"; }
+  content: "\00AB while\00BB"; }
 
 /* contents of each activity */
 div.bpel_name:before {
@@ -231,10 +231,10 @@ div.bpel_if_child, div.bpel_if_then, div.bpel_if_elseif, div.bpel_if_else {
   display: inline-block; }
 
 div.bpel_if_then:before {
-  content: "<<then>>"; }
+  content: "\00AB then\00BB"; }
 
 div.bpel_if_elseif:before {
-  content: "<<elseif>>"; }
+  content: "\00AB elseif\00BB"; }
 
 div.bpel_if_else:before {
-  content: "<<else>>"; }
+  content: "\00AB else\00BB"; }
