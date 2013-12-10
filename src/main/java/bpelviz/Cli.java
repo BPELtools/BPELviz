@@ -47,10 +47,6 @@ public class Cli {
             printUsageAndExit("Given file " + getBpelFile() + " is no bpel file");
         }
 
-        if (!Files.isRegularFile(getHtmlFile())) {
-            printUsageAndExit("Given bpel file " + getBpelFile() + " is no regular file");
-        }
-
         if (!getHtmlFile().toString().endsWith(".html")) {
             printUsageAndExit("Given file " + getHtmlFile() + " is no html file");
         }
