@@ -22,7 +22,7 @@ We keep the compiled `.css` file in the repository to enable a quick start with 
     $ git clone https://github.com/koppor/BPELviz
     $ cd BPELviz
     $ gradlew installApp
-    [manual] add build/install/textools/bin to PATH
+    [manual] add build/install/BPELviz/bin to PATH
 
 ## Usage
 
