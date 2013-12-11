@@ -5,7 +5,7 @@
 ## Building
 
 We use [Sass] to generate the CSS.
-We keep the compiled `.css` file in the repository to enable a quick start with the renderer.
+We keep the compiled `.css` file in the repository to enable a quick start with the visualizer.
 
 ## License
 
@@ -19,7 +19,7 @@ We keep the compiled `.css` file in the repository to enable a quick start with 
 ## Installation
 
     [manual] make sure that JAVA_HOME points to local jdk folder
-    $ git clone https://github.com/koppor/BPELviz
+    $ git clone https://github.com/BPELtools/BPELviz
     $ cd BPELviz
     $ gradlew installApp
     [manual] add build/install/BPELviz/bin to PATH
