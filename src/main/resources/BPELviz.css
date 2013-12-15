@@ -188,9 +188,6 @@ div.bpel_while:before {
   content: "\00AB while\00BB"; }
 
 /* contents of each activity */
-div.bpel_name:before {
-  content: "Name: "; }
-
 div.bpel_name {
   text-overflow: ellipsis;
   display: inline-block;

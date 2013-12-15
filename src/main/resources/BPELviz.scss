@@ -89,10 +89,6 @@ div.bpel_structured_activity {
 
 /* contents of each activity */
 
-div.bpel_name:before {
-  content: "Name: "
-}
-
 div.bpel_name {
   text-overflow: ellipsis;
 
