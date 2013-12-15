@@ -152,3 +152,9 @@ div.bpel_if_child {
     content: "\00AB #{$ifChild}\00BB"
   }
 }
+
+/* UI */
+.popover {
+  max-width: 800px;
+  width: auto;
+}

@@ -35,13 +35,6 @@
                       type="text/css"/>
                 <link href="BPELviz.css" rel="stylesheet" type="text/css"/>
 
-                <style>
-                    .popover {
-                        max-width: 800px;
-                        width: auto;
-                    }
-                </style>
-
             </head>
             <body>
 
