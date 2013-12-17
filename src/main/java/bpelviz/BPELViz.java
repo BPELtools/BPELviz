@@ -39,6 +39,12 @@ public class BPELViz {
     private Templates createTemplates() throws TransformerConfigurationException {
         Source xsltSource = new StreamSource(BPELViz.class.getResourceAsStream("/bpel2html.xsl"));
         TransformerFactory transFact = TransformerFactory.newInstance();
+        transFact.setURIResolver(new URIResolver() {
+            @Override
+            public Source resolve(String href, String base) throws TransformerException {
+                return new StreamSource(BPELViz.class.getResourceAsStream("/" + href));
+            }
+        });
         return transFact.newTemplates(xsltSource);
     }
 
