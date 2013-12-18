@@ -3,15 +3,29 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:bpelviz="http://github.com/BPELtools/BPELviz">
 
+    <xsl:variable name="elementSeparator" select="'.'" as="xs:string" />
+    <xsl:variable name="positionSeparator" select="'-'" as="xs:string" />
+
     <xsl:function name="bpelviz:deriveIdentifier">
         <xsl:param name="node" required="yes" />
 
         <xsl:variable name="nodeName" select="name($node)" as="xs:string" />
-        <xsl:variable name="abbreviatedName" select="bpelviz:abbreviateNode($nodeName)" as="xs:string" />
+
+        <xsl:variable name="abbreviation" select="bpelviz:abbreviateNode($nodeName)" as="xs:string" />
+
+        <xsl:variable name="abbreviatedName" as="xs:string">
+            <xsl:variable name="siblings-and-self-of-same-type" select="$node/../*[name() = $node/name()]"/>
+            <xsl:variable name="position" select="index-of($siblings-and-self-of-same-type, $node)[1]" />
+            <xsl:variable name="elements" select="count($siblings-and-self-of-same-type)" as="xs:integer" />
+            <xsl:choose>
+                <xsl:when test="$elements = 1"><xsl:value-of select="$abbreviation" /></xsl:when>
+                <xsl:otherwise><xsl:value-of select="concat($abbreviation, $positionSeparator, $position)" /></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:choose>
             <xsl:when test="not($node = $node/..)">
-                <xsl:value-of select="concat(bpelviz:deriveIdentifier($node/..), '>', $abbreviatedName)"/>
+                <xsl:value-of select="concat(bpelviz:deriveIdentifier($node/..), $elementSeparator, $abbreviatedName)"/>
             </xsl:when>
             <xsl:otherwise><xsl:value-of select="$abbreviatedName" /></xsl:otherwise>
         </xsl:choose>
