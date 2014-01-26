@@ -7,7 +7,7 @@
                 xmlns:bpelviz="http://github.com/BPELtools/BPELviz"
                 >
 
-    <xsl:import href="BPELviz.xsl" />
+    <xsl:import href="BPELviz-id-handling.xsl" />
 
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
