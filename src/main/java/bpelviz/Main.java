@@ -5,7 +5,7 @@ import java.nio.file.Path;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BPELVizException {
         Cli cli = new Cli(args);
 
         Path bpelFile = cli.getBpelFile();

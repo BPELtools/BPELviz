@@ -1,6 +1,6 @@
 package bpelviz;
 
-public class BPELVizException extends RuntimeException {
+public class BPELVizException extends Exception {
 
     public BPELVizException() {
     }
