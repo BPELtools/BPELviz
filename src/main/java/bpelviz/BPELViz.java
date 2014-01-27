@@ -4,14 +4,20 @@ import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Creates the html5 visualization of a bpel file.
  */
 public class BPELViz {
+
+    private static final Logger logger = LoggerFactory.getLogger(BPELViz.class);
 
     public static final String BPELVIZ_CSS = "BPELviz.css";
     public static final String BPELVIZ_JS = "BPELviz.js";
@@ -33,11 +39,32 @@ public class BPELViz {
 
     private Transformer createTransformer() throws TransformerConfigurationException {
         Templates templates = createTemplates();
-        return templates.newTransformer();
+        Transformer trans = templates.newTransformer();
+        trans.setErrorListener(new ErrorListener() {
+            @Override
+            public void warning(TransformerException exception) throws TransformerException {
+                logger.warn("Transformation", exception);
+            }
+
+            @Override
+            public void error(TransformerException exception) throws TransformerException {
+                logger.error("Transformation", exception);
+            }
+
+            @Override
+            public void fatalError(TransformerException exception) throws TransformerException {
+                logger.error("Transformation", exception);
+            }
+        });
+        return trans;
     }
 
     private Templates createTemplates() throws TransformerConfigurationException {
-        Source xsltSource = new StreamSource(BPELViz.class.getResourceAsStream("/BPELviz.xsl"));
+        InputStream is = BPELViz.class.getResourceAsStream("/BPELviz.xsl");
+        if (is == null) {
+            logger.error("Could not find BPELviz.xsl");
+        }
+        Source xsltSource = new StreamSource(is);
         TransformerFactory transFact = TransformerFactory.newInstance();
         transFact.setURIResolver(new URIResolver() {
             @Override
