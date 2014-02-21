@@ -1,3 +1,5 @@
+bin/
+betsy-test-visualizations/
 .idea/
 *.iml
 *.ipr
