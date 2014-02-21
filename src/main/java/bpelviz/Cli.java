@@ -2,6 +2,7 @@ package bpelviz;
 
 import org.apache.commons.cli.*;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -55,10 +56,19 @@ public class Cli {
         if (cmd.getArgs().length == 2) {
             return Paths.get(cmd.getArgs()[1]);
         } else {
-            Path bpelFile = getBpelFile().toAbsolutePath();
-            String bpelFileName = bpelFile.getFileName().toString();
-            String htmlFileName = bpelFileName.replace(".bpel", ".html");
-            return bpelFile.getParent().resolve(htmlFileName);
+
+            try {
+                Path tmpdir = Files.createTempDirectory("BPELviz-");
+
+                Path bpelFile = getBpelFile().toAbsolutePath();
+                String bpelFileName = bpelFile.getFileName().toString();
+                String htmlFileName = bpelFileName.replace(".bpel", ".html");
+
+                return tmpdir.resolve(htmlFileName);
+            } catch (IOException e) {
+                throw new IllegalStateException("the temporary directory for storing the html file could not be created");
+            }
+
         }
     }
 

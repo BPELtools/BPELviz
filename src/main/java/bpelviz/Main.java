@@ -11,6 +11,8 @@ public class Main {
         Path bpelFile = cli.getBpelFile();
         Path htmlFile = cli.getHtmlFile();
 
+        System.out.println("Transforming: " + bpelFile + " --> " + htmlFile);
+
         // main logic
         new BPELViz().bpel2html(bpelFile, htmlFile);
 
