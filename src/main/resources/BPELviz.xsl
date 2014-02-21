@@ -46,6 +46,21 @@
                     <xsl:apply-templates select="@* | node()"/>
                 </div>
 
+                <xsl:variable name="xml-serialization-full"><xsl:apply-templates mode='serialize' select='.'/></xsl:variable>
+                <xsl:variable name="line-break" select="'&#x0a;'"/>
+                <xsl:variable name="lines" select="tokenize($xml-serialization-full, $line-break)"/>
+
+                <div class="source_full">
+                    <xsl:for-each select="$lines">
+                        <xsl:variable name="line_number" select="index-of($lines, .)" />
+                        <div id="source_line_{$line_number}" class="source_line">
+                            <div id="source_line_number_{$line_number}" class="source_line_number"><xsl:value-of select="$line_number" /></div>
+                            <div id="source_line_content_{$line_number}" class="source_line_content"><pre><xsl:value-of select="." /></pre></div>
+                        </div>
+                    </xsl:for-each>
+                </div>
+
+
                 <script>
                     require(["BPELviz"], function(renderer) {
                         renderer.initialize();
