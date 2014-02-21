@@ -28,11 +28,17 @@ run {
 }
 
 task sass() << {
+
     // works only on windows when having the sass gem installed on the path
-    ant.exec(executable: "cmd") {
+    try {
+    ant.exec(executable: "cmd", failonerror: true) {
         arg(value: "/c")
-        arg(value: "sass")
+        arg(value: "sasss")
         arg(value: "src/main/resources/BPELviz.scss")
         arg(value: "src/main/resources/BPELviz.css")
+    }
+    } catch (Exception e){
+        println "ensure that sass is available at the command line and that you use WINDOWS"
+        throw e
     }
 }
