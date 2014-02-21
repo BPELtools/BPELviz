@@ -82,7 +82,8 @@
         <xsl:variable name="xml-serialization">
             <xsl:variable name="line-numbers" as="xs:integer" select="count($lines)"/>
 
-            <xsl:text>&lt;pre&gt;</xsl:text>
+            <pre>
+
             <xsl:choose>
                 <xsl:when test="$line-numbers > 11">
                     <xsl:value-of select="string-join(subsequence($lines, 0, 5), $line-break)"/>
@@ -94,15 +95,14 @@
                 <xsl:otherwise><xsl:value-of select="$xml-serialization-full"/></xsl:otherwise>
             </xsl:choose>
 
-            <xsl:text>&lt;/pre&gt;</xsl:text>
+            </pre>
         </xsl:variable>
-        <div id="{bpelviz:deriveIdentifier(.)}" class="bpel_{fn:local-name()} shrinkable"
-             rel="popover"
-             data-trigger="manual"
-             data-title="{$xml-serialization}"
-             data-toggle="popover"
-             data-html="true" data-placement="right">
+        <div id="{bpelviz:deriveIdentifier(.)}" class="bpel bpel_{fn:local-name()} shrinkable"
+             >
             <xsl:apply-templates select="@* | node()"/>
+        </div>
+        <div id="source-{bpelviz:deriveIdentifier(.)}" class="dotted_source">
+            <xsl:value-of select="$xml-serialization" />
         </div>
     </xsl:template>
 
@@ -117,19 +117,19 @@
 
     <!-- serialize xml node to string -->
     <xsl:template match="*" mode="serialize">
-        <xsl:text>&amp;lt;</xsl:text>
+        <xsl:text>&lt;</xsl:text>
         <xsl:value-of select="name()"/>
         <xsl:apply-templates select="@*" mode="serialize" />
         <xsl:choose>
             <xsl:when test="node()">
-                <xsl:text>&amp;gt;</xsl:text>
+                <xsl:text>&gt;</xsl:text>
                 <xsl:apply-templates mode="serialize" />
-                <xsl:text>&amp;lt;/</xsl:text>
+                <xsl:text>&lt;/</xsl:text>
                 <xsl:value-of select="name()"/>
-                <xsl:text>&amp;gt;</xsl:text>
+                <xsl:text>&gt;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text> /&amp;gt;</xsl:text>
+                <xsl:text> /&gt;</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
