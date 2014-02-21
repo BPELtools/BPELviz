@@ -11,6 +11,9 @@
 
     <xsl:output method="html" indent="yes" encoding="UTF-8"/>
 
+    <!-- constants -->
+    <xsl:variable name="line-break" select="'&#x0a;'"/>
+
     <!-- create doctype html5 element -->
     <xsl:template match="/">
         <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>
@@ -56,7 +59,6 @@
                 </div>
 
                 <xsl:variable name="xml-serialization-full"><xsl:apply-templates mode='serialize' select='.'/></xsl:variable>
-                <xsl:variable name="line-break" select="'&#x0a;'"/>
 
                 <div id="tabContainer">
                     <!-- Nav tabs -->
@@ -108,10 +110,10 @@
 
     <xsl:template match="bpel:*">
         <xsl:variable name="xml-serialization-full"><xsl:apply-templates mode='serialize' select='.'/></xsl:variable>
-        <xsl:variable name="line-break" select="'&#x0a;'"/>
         <xsl:variable name="lines" select="tokenize($xml-serialization-full, $line-break)"/>
         <xsl:variable name="xml-serialization">
             <xsl:variable name="line-numbers" as="xs:integer" select="count($lines)"/>
+
             <xsl:choose>
                 <xsl:when test="$line-numbers > 11">
                     <xsl:value-of select="string-join(subsequence($lines, 0, 5), $line-break)"/>
