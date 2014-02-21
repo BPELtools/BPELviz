@@ -62,7 +62,7 @@ public class BPELViz {
     private Templates createTemplates() throws TransformerConfigurationException {
         InputStream is = BPELViz.class.getResourceAsStream("/BPELviz.xsl");
         if (is == null) {
-            logger.error("Could not find BPELviz.xsl");
+            throw new IllegalStateException("Could not find BPELviz.xsl");
         }
         Source xsltSource = new StreamSource(is);
         TransformerFactory transFact = TransformerFactory.newInstance();
