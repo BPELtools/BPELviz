@@ -1,3 +1,21 @@
+/* UI */
+div.dotted_source {
+  display: none; }
+
+#processContainer {
+  overflow: auto; }
+
+#tabContainer {
+  float: right;
+  width: 500px;
+  top: 0px;
+  right: 0px;
+  position: fixed; }
+
+#FullSource {
+  height: 90vh;
+  overflow: auto; }
+
 div.bpel_correlationSets {
   display: none; }
 
@@ -235,8 +253,3 @@ div.bpel_if_elseif:before {
 
 div.bpel_if_else:before {
   content: "\00AB else\00BB"; }
-
-/* UI */
-.popover {
-  max-width: 800px;
-  width: auto; }

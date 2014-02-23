@@ -14,7 +14,7 @@
     var currentToolTip = false;
 
     /**
-     * Initalizes the DOM elements on the page
+     * Initialises the DOM elements on the page
      *
      * Has to be called when the DOM elements are available
      *
@@ -23,7 +23,7 @@
     function initialize() {
         // all elements with "shrinkable" may be shrinked
         // alternative implementation: check for bpel_activity, but this class does not exist any more
-        $("div.shrinkable").on("click", function(e) {
+        $("div.DISABLED").on("click", function(e) {
             var element = $(e.delegateTarget);
 
             var shrunkChildren = element.children(".shrunk");
@@ -52,18 +52,31 @@
             return false;
         });
 
-        $("div[rel='popover']").on("mouseover", function(e) {
-            var target = $(e.target);
-            if (!currentToolTip || (currentToolTip[0] != target[0])) {
-                // new element hovered
-                if (currentToolTip) {
-                    // if tooltip is shown the first time, there is no old tooltip, therefore the check for currentToolTip
-                    currentToolTip.tooltip('hide');
-                }
-                currentToolTip = target.tooltip('show');
-            }
-        }).on("mouseleave", function(e) {
-            $(e.target).tooltip('hide');
+        // initialize tabs
+        $('#SourceTabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+
+        // enable click on elements
+        $(".bpel").on("click", function(event) {
+            // determine id of element
+            var id = $(event.delegateTarget).attr("id");
+
+            /* show source in "Source Extract" tab */
+            var sourceId = "source-" + id;
+            sourceId = sourceId.replace(/\./g,'\\.');
+            var source = $("#" + sourceId).children().clone();
+            $("#SourceExtractTab").empty().append(source);
+
+            /* highlight source in "Full Source" tab. Doesn't work currently as we don't have the line numbers available */
+            // highlight line number
+            // $("#FullSource > div > div > table > tbody > tr > td.gutter > div.line.number2").addClass("highlighted")
+            // highlight code fragment
+            // $("#FullSource > div > div > table > tbody > tr > td.code > div > div.line.number2").addClass("highlighted")
+
+            // don't show source for the parent element, just for the clicked one
+            return false;
         });
     }
 

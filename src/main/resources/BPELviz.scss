@@ -1,3 +1,25 @@
+/* UI */
+div.dotted_source {
+  display: none;
+}
+
+#processContainer {
+  overflow: auto;
+}
+
+#tabContainer {
+  float: right;
+  width: 500px;
+  top: 0px;
+  right: 0px;
+  position: fixed;
+}
+
+#FullSource {
+  height: 90vh;
+  overflow: auto;
+}
+
 // currently not displayed
 @each $hidden in correlationSets, correlationSet, documentation, extensions,
 condition,
@@ -153,8 +175,3 @@ div.bpel_if_child {
   }
 }
 
-/* UI */
-.popover {
-  max-width: 800px;
-  width: auto;
-}

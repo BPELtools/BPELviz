@@ -23,48 +23,64 @@
                 <title>BPELviz</title>
                 <meta charset="utf-8"/>
 
+                <!-- latest release is 3.0.83. That does not play well with requirejs. Therefore, everything of SyntaxHighlighter is loaded before requirejs -->
+                <script src="http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shCore.js" type="text/javascript"></script>
+                <script src="http://alexgorbatchev.com/pub/sh/3.0.83/scripts/shBrushXml.js" type="text/javascript"></script>
+
                 <script src="http://requirejs.org/docs/release/2.1.9/minified/require.js"></script>
                 <script>
                     require.config({
                     paths: {
                         "jquery": "http://codeorigin.jquery.com/jquery-2.0.3.min",
-                        "bootstrap3": "http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min"
+                        "bootstrap3": "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min"
                     },
                     shim: {
                         "bootstrap3": ["jquery"]
                     }});
                 </script>
 
-                <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"
-                      type="text/css"/>
+                <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+                <link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
+                <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+                <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeEclipse.css" rel="stylesheet" type="text/css" />
+
                 <link href="BPELviz.css" rel="stylesheet" type="text/css"/>
 
             </head>
             <body>
-
-                <div class="bpel_process">
-                    <xsl:apply-templates select="@* | node()"/>
+                <div id="processContainer">
+                    <div class="bpel_process">
+                        <xsl:apply-templates select="@* | node()"/>
+                    </div>
                 </div>
 
                 <xsl:variable name="xml-serialization-full"><xsl:apply-templates mode='serialize' select='.'/></xsl:variable>
                 <xsl:variable name="line-break" select="'&#x0a;'"/>
-                <xsl:variable name="lines" select="tokenize($xml-serialization-full, $line-break)"/>
 
-                <div class="source_full">
-                    <xsl:for-each select="$lines">
-                        <xsl:variable name="line_number" select="index-of($lines, .)" />
-                        <div id="source_line_{$line_number}" class="source_line">
-                            <div id="source_line_number_{$line_number}" class="source_line_number"><xsl:value-of select="$line_number" /></div>
-                            <div id="source_line_content_{$line_number}" class="source_line_content"><pre><xsl:value-of select="." /></pre></div>
+                <div id="tabContainer">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="SourceTabs">
+                        <li class="active"><a href="#SourceExtractTab" data-toggle="tab">Source Extract</a></li>
+                        <li><a href="#FullSourceTab" data-toggle="tab">Full Source</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="SourceExtractTab">Click on an element to show its source</div>
+                        <div class="tab-pane" id="FullSourceTab">
+                            <div id="FullSource">
+                                <pre class="brush: xml"><xsl:value-of select="$xml-serialization-full" /></pre>
+                            </div>
                         </div>
-                    </xsl:for-each>
+                    </div>
                 </div>
-
-
                 <script>
                     require(["BPELviz"], function(renderer) {
                         renderer.initialize();
                     });
+
+                    SyntaxHighlighter.all();
                 </script>
             </body>
         </html>
@@ -96,9 +112,6 @@
         <xsl:variable name="lines" select="tokenize($xml-serialization-full, $line-break)"/>
         <xsl:variable name="xml-serialization">
             <xsl:variable name="line-numbers" as="xs:integer" select="count($lines)"/>
-
-            <pre>
-
             <xsl:choose>
                 <xsl:when test="$line-numbers > 11">
                     <xsl:value-of select="string-join(subsequence($lines, 0, 5), $line-break)"/>
@@ -109,15 +122,13 @@
                 </xsl:when>
                 <xsl:otherwise><xsl:value-of select="$xml-serialization-full"/></xsl:otherwise>
             </xsl:choose>
-
-            </pre>
         </xsl:variable>
-        <div id="{bpelviz:deriveIdentifier(.)}" class="bpel bpel_{fn:local-name()} shrinkable"
-             >
+        <div id="{bpelviz:deriveIdentifier(.)}" class="bpel bpel_{fn:local-name()} shrinkable">
             <xsl:apply-templates select="@* | node()"/>
         </div>
         <div id="source-{bpelviz:deriveIdentifier(.)}" class="dotted_source">
-            <xsl:value-of select="$xml-serialization" />
+            <!-- gutter:false -> don't display line numbers. Required, because line counting currently always starts at one -->
+            <pre class="brush: xml; gutter: false;"><xsl:value-of select="$xml-serialization" /></pre>
         </div>
     </xsl:template>
 
