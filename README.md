@@ -7,6 +7,10 @@
 We use [Sass] to generate the CSS.
 We keep the compiled `.css` file in the repository to enable a quick start with the visualizer.
 
+Sass installation is described at http://sass-lang.com/install.
+In a nutshell, you have to install ruby and then execute `gem install sass` on the command line.
+`BPELviz.scss` can be converted into `BPELviz.css` by executing `sass BPELviz.scss BPELviz.css` in `src/main/resources`.
+
 ## License
 
 [MIT License]
