@@ -50,7 +50,7 @@
             </head>
             <body>
                 <div id="processContainer">
-                    <div class="bpel_process">
+                    <div class="bpel_process bpel">
                         <xsl:apply-templates select="@* | node()"/>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
         <div class="bpel_if">
             <xsl:apply-templates select="@*"/>
 
-            <div class="bpel_">
+            <div class="bpel">
                 <xsl:apply-templates select="bpel:condition"/>
                 <xsl:apply-templates select="child[not(bpel:condition or bpel:else or bpel:elseif)]"/>
             </div>
@@ -123,8 +123,11 @@
                 <xsl:otherwise><xsl:value-of select="$xml-serialization-full"/></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <div id="{bpelviz:deriveIdentifier(.)}" class="bpel bpel_{fn:local-name()} shrinkable">
-            <xsl:apply-templates select="@* | node()"/>
+        <div id="{bpelviz:deriveIdentifier(.)}" class="bpel bpel_{fn:local-name()}">
+            <!-- TODO: show buttons only at activities -->
+            <button class="btn btn-sm collapseBtn glyphicon glyphicon-minus"></button>
+            <button class="btn btn-sm expandBtn glyphicon glyphicon-plus"></button>
+            <div class="content"><xsl:apply-templates select="@* | node()"/></div>
         </div>
         <div id="source-{bpelviz:deriveIdentifier(.)}" class="dotted_source">
             <!-- gutter:false -> don't display line numbers. Required, because line counting currently always starts at one -->

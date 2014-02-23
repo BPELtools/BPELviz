@@ -20,9 +20,21 @@ div.dotted_source {
   overflow: auto;
 }
 
+.expandBtn {
+  float: right;
+  margin: 1px;
+}
+
+.collapseBtn {
+  float: right;
+  margin: 1px;
+  margin-right: -5px;
+}
+
 // currently not displayed
 @each $hidden in correlationSets, correlationSet, documentation, extensions,
 condition,
+copy,
 fromParts, toParts,
 import,
 links, sources, targets, joinCondition,
@@ -55,7 +67,10 @@ div.bpel_activity {
   
 	cursor: standard;
 
-    /* IE10 Consumer Preview */
+    /* be higher than the +/- buttons */
+    min-height: 33px;
+
+  /* IE10 Consumer Preview */
     background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
     /* Mozilla Firefox */
     background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
@@ -77,7 +92,6 @@ div.bpel_basic_activity {
   @extend div.bpel_activity;
 
   width: 225px;
-  height: 100px;
 }
 
 @each $basicActivity in assign, empty, compensate, compensateScope, empty, exit, extensionActivity, invoke, receive, reply, rethrow, throw, validate, wait {

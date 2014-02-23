@@ -21,32 +21,21 @@
      * Currently, the DOM elements having the class "shrinkable" are handled
      */
     function initialize() {
-        // all elements with "shrinkable" may be shrinked
-        // alternative implementation: check for bpel_activity, but this class does not exist any more
-        $("div.DISABLED").on("click", function(e) {
+        $("button.expandBtn").on("click", function(e) {
+            console.log("expand clicked")
             var element = $(e.delegateTarget);
+            var bpelElement = element.parent();
+            bpelElement.children("div.content").slideDown();
 
-            var shrunkChildren = element.children(".shrunk");
-            if (shrunkChildren.size() == 0) {
-                // no shrunk children
+            // no more further event handling
+            return false;
+        });
 
-                var children = element.children(".shrinkable:visible");
-                if (children.size() == 0) {
-                    // the element itself contains no shrinkable children
-                    //  shrink the element itself
-                    element.slideUp();
-                    element.addClass("shrunk");
-                } else {
-                    // shrink them
-                    children.slideUp();
-                    children.addClass("shrunk");
-                }
-            } else {
-                // children are shrunk
-                // unshrink them
-                shrunkChildren.slideDown();
-                shrunkChildren.removeClass("shrunk");
-            }
+        $("button.collapseBtn").on("click", function(e) {
+            console.log("collapsed clicked")
+            var element = $(e.delegateTarget);
+            var bpelElement = element.parent();
+            bpelElement.children("div.content").slideUp();
 
             // no more further event handling
             return false;
