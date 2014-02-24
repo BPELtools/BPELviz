@@ -42,3 +42,9 @@ task sass() << {
         throw e
     }
 }
+
+task generateExamples(type: JavaExec, dependsOn: build) {
+    description = 'Generates all examples'
+    classpath = sourceSets.main.runtimeClasspath
+    main = "bpelviz.BetsyTestVisualizer"
+}

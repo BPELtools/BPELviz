@@ -41,6 +41,7 @@ Some commands which are very helpful during development:
     $ gradlew idea # create/update intellij project files
     $ gradlew eclipse # create/update eclipse project files
     $ gradlew run -Pargs="ARGS" # Run BPELviz; ARGS see Usage
+    $ gradlew generateExamples # Generates visualizations for all betsy-tests
 
 Some documentation:
 
