@@ -25,13 +25,13 @@
             var element = $(e.delegateTarget);
             var bpelElement = element.parent();
 
-            if (element.hasClass("glyphicon-minus")) {
+            if (element.hasClass("glyphicon-plus")) {
                 // collapsed -> expand it
-                element.removeClass("glyphicon-minus").addClass("glyphicon-plus").addClass("active");
+                element.removeClass("glyphicon-plus").addClass("glyphicon-minus");
                 bpelElement.children("div.content").slideDown();
             } else {
                 // expanded -> collapse it
-                element.removeClass("glyphicon-plus").addClass("glyphicon-minus").removeClass("active");
+                element.removeClass("glyphicon-minus").addClass("glyphicon-plus");
                 bpelElement.children("div.content").slideUp();
             }
 

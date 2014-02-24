@@ -24,6 +24,7 @@ div.dotted_source {
   float: right;
   margin: 1px;
   margin-right: -5px;
+  margin-top: 5px;
 }
 
 // currently not displayed
@@ -82,7 +83,7 @@ div.bpel_activity {
 	cursor: standard;
 
     /* be higher than the +/- buttons */
-    min-height: 33px;
+    min-height: 39px;
 
     @include linear-gradient(#FFFFFF, #EBF2F7);
 }

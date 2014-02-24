@@ -19,7 +19,8 @@ div.dotted_source {
 .collapseExpandToggleBtn {
   float: right;
   margin: 1px;
-  margin-right: -5px; }
+  margin-right: -5px;
+  margin-top: 5px; }
 
 div.bpel_correlationSets {
   display: none; }
@@ -117,7 +118,7 @@ div.bpel_activity, div.bpel_basic_activity, div.bpel_assign, div.bpel_empty, div
   background: #ffffff;
   cursor: standard;
   /* be higher than the +/- buttons */
-  min-height: 33px;
+  min-height: 39px;
   /* IE10 Consumer Preview */
   background-image: -ms-linear-gradient(top, white 0%, #ebf2f7 100%);
   /* Mozilla Firefox */
