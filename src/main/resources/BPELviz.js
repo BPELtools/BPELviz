@@ -48,13 +48,18 @@
         // enable click on elements
         $(".bpel").on("click", function(event) {
             // determine id of element
-            var id = $(event.delegateTarget).attr("id");
+            var target = $(event.delegateTarget);
+            var id = target.attr("id");
 
             /* show source in "Source Extract" tab */
             var sourceId = "source-" + id;
             sourceId = sourceId.replace(/\./g,'\\.');
             var source = $("#" + sourceId).children().clone();
             $("#SourceExtractTab").empty().append(source);
+
+            // mark the clicked item with another color
+            $(".selected").removeClass("selected");
+            target.addClass("selected");
 
             /* highlight source in "Full Source" tab. Doesn't work currently as we don't have the line numbers available */
             // highlight line number

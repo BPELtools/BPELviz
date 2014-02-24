@@ -43,6 +43,25 @@ for, until, repeatEvery {
   }
 }
 
+@mixin linear-gradient($startColor, $stopColor) {
+  /* IE10 Consumer Preview */
+  background-image: -ms-linear-gradient(top, $startColor 0%, $stopColor 100%);
+  /* Mozilla Firefox */
+  background-image: -moz-linear-gradient(top, $startColor 0%, $stopColor 100%);
+  /* Opera */
+  background-image: -o-linear-gradient(top, $startColor 0%, $stopColor 100%);
+  /* Webkit (Safari/Chrome 10) */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $startColor), color-stop(1, $stopColor));
+  /* Webkit (Chrome 11+) */
+  background-image: -webkit-linear-gradient(top, $startColor 0%, $stopColor 100%);
+  /* W3C Markup, IE10 Release Preview */
+  background-image: linear-gradient(to bottom, $startColor 0%, $stopColor 100%);
+}
+
+div.bpel_activity.selected {
+  @include linear-gradient(#FFFFFF, #FFCC66);
+}
+
 /* each basic and structured activity has this */
 div.bpel_activity {
     /* center it within parent */
@@ -65,18 +84,7 @@ div.bpel_activity {
     /* be higher than the +/- buttons */
     min-height: 33px;
 
-  /* IE10 Consumer Preview */
-    background-image: -ms-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
-    /* Mozilla Firefox */
-    background-image: -moz-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
-    /* Opera */
-    background-image: -o-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
-    /* Webkit (Safari/Chrome 10) */
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFFFFF), color-stop(1, #EBF2F7));
-    /* Webkit (Chrome 11+) */
-    background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #EBF2F7 100%);
-    /* W3C Markup, IE10 Release Preview */
-    background-image: linear-gradient(to bottom, #FFFFFF 0%, #EBF2F7 100%);
+    @include linear-gradient(#FFFFFF, #EBF2F7);
 }
 
 /* BPEL distinguishes between basic and structured activities */
