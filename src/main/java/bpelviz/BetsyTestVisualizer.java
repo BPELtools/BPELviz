@@ -40,7 +40,8 @@ public class BetsyTestVisualizer {
 	private static void visualize(Path bpelFile) throws BPELVizException {
 		Path targetFilePath = deriveHtmlPath(bpelFile);
 		new BPELViz().bpel2html(bpelFile, targetFilePath);
-	}
+        System.out.format("%s --> %s\n", bpelFile, targetFilePath);
+    }
 
 	private static Path deriveHtmlPath(Path bpelFile) {
 		String fileName = extractFileName(bpelFile);
