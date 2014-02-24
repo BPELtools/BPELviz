@@ -9,14 +9,13 @@
     <xsl:function name="bpelviz:deriveIdentifier">
         <xsl:param name="node" required="yes" />
 
-        <xsl:variable name="nodeName" select="name($node)" as="xs:string" />
+        <xsl:variable name="nodeName" select="local-name($node)" as="xs:string" />
 
         <xsl:variable name="abbreviation" select="bpelviz:abbreviateNode($nodeName)" as="xs:string" />
 
         <xsl:variable name="abbreviatedName" as="xs:string">
-            <xsl:variable name="siblings-and-self-of-same-type" select="$node/../*[name() = $node/name()]"/>
-            <xsl:variable name="position" select="index-of($siblings-and-self-of-same-type, $node)[1]" />
-            <xsl:variable name="elements" select="count($siblings-and-self-of-same-type)" as="xs:integer" />
+            <xsl:variable name="position" select="count($node/preceding-sibling::*[local-name() = $node/local-name()])+1" />
+            <xsl:variable name="elements" select="count($node/preceding-sibling::*[local-name() = $node/local-name()])" as="xs:integer" />
             <xsl:choose>
                 <xsl:when test="$elements = 1"><xsl:value-of select="$abbreviation" /></xsl:when>
                 <xsl:otherwise><xsl:value-of select="concat($abbreviation, $positionSeparator, $position)" /></xsl:otherwise>
