@@ -21,21 +21,19 @@
      * Currently, the DOM elements having the class "shrinkable" are handled
      */
     function initialize() {
-        $("button.expandBtn").on("click", function(e) {
-            console.log("expand clicked")
+        $("button.collapseExpandToggleBtn").on("click", function(e) {
             var element = $(e.delegateTarget);
             var bpelElement = element.parent();
-            bpelElement.children("div.content").slideDown();
 
-            // no more further event handling
-            return false;
-        });
-
-        $("button.collapseBtn").on("click", function(e) {
-            console.log("collapsed clicked")
-            var element = $(e.delegateTarget);
-            var bpelElement = element.parent();
-            bpelElement.children("div.content").slideUp();
+            if (element.hasClass("glyphicon-minus")) {
+                // collapsed -> expand it
+                element.removeClass("glyphicon-minus").addClass("glyphicon-plus").addClass("active");
+                bpelElement.children("div.content").slideDown();
+            } else {
+                // expanded -> collapse it
+                element.removeClass("glyphicon-plus").addClass("glyphicon-minus").removeClass("active");
+                bpelElement.children("div.content").slideUp();
+            }
 
             // no more further event handling
             return false;

@@ -16,11 +16,7 @@ div.dotted_source {
   height: 90vh;
   overflow: auto; }
 
-.expandBtn {
-  float: right;
-  margin: 1px; }
-
-.collapseBtn {
+.collapseExpandToggleBtn {
   float: right;
   margin: 1px;
   margin-right: -5px; }

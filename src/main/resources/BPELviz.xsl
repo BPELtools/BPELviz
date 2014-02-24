@@ -127,8 +127,7 @@
         </xsl:variable>
         <div id="{bpelviz:deriveIdentifier(.)}" class="bpel bpel_{fn:local-name()}">
             <!-- TODO: show buttons only at activities -->
-            <button class="btn btn-sm collapseBtn glyphicon glyphicon-minus"></button>
-            <button class="btn btn-sm expandBtn glyphicon glyphicon-plus"></button>
+            <button class="btn btn-sm collapseExpandToggleBtn glyphicon glyphicon-plus active"></button>
             <div class="content"><xsl:apply-templates select="@* | node()"/></div>
         </div>
         <div id="source-{bpelviz:deriveIdentifier(.)}" class="dotted_source">
