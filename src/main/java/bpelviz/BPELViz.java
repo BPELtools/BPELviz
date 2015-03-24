@@ -1,5 +1,8 @@
 package bpelviz;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
@@ -8,9 +11,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Objects;
 
 /**
  * Creates the html5 visualization of a bpel file.
@@ -30,8 +31,12 @@ public class BPELViz {
         }
 
         try {
-            Files.copy(BPELViz.class.getResourceAsStream("/" + BPELVIZ_CSS), htmlFile.getParent().resolve(BPELVIZ_CSS), StandardCopyOption.REPLACE_EXISTING);
-            Files.copy(BPELViz.class.getResourceAsStream("/" + BPELVIZ_JS), htmlFile.getParent().resolve(BPELVIZ_JS), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Objects.requireNonNull(
+                            BPELViz.class.getResourceAsStream("/" + BPELVIZ_CSS), "Could not find /" + BPELVIZ_CSS + " in classpath"),
+                    htmlFile.getParent().resolve(BPELVIZ_CSS), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Objects.requireNonNull(
+                            BPELViz.class.getResourceAsStream("/" + BPELVIZ_JS), "Could not find /" + BPELVIZ_JS + " in classpath"),
+                    htmlFile.getParent().resolve(BPELVIZ_JS), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new BPELVizException("Could not copy css/js file", e);
         }
